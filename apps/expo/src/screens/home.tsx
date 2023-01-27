@@ -79,6 +79,7 @@ const CreatePost: React.FC = () => {
 
 export const HomeScreen = () => {
   const postQuery = api.post.all.useQuery();
+
   const [showPost, setShowPost] = React.useState<string | null>(null);
 
   const deletePostMutation = api.post.delete.useMutation({
