@@ -13,6 +13,8 @@ export const Avatar = (props: Props) => {
       darkColor={Colors.dark.backgroundSecondary}
       lightColor={Colors.light.backgroundSecondary}
       className="bg-transparent"
-    ></View>
+    >
+      <Image className="h-[40px] w-[40px] rounded-full" source={imageSrc} />
+    </View>
   );
 };
