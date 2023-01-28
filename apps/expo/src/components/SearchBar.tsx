@@ -1,5 +1,5 @@
 // SearchBar.js
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   TextInput,
@@ -7,14 +7,19 @@ import {
   Keyboard,
   Button,
   TouchableWithoutFeedback,
-} from 'react-native';
-import { Feather, Entypo } from '@expo/vector-icons';
+} from "react-native";
+import { Feather, Entypo } from "@expo/vector-icons";
+import { useThemeColor } from "./Themed";
 
 type SearchBarProps = {
   clicked: any;
   searchPhrase: any;
   setSearchPhrase: any;
   setClicked: any;
+  lightBg: any;
+  darkBg: any;
+  lightColor: any;
+  darkColor: any;
 };
 
 export const SearchBar = ({
@@ -22,19 +27,32 @@ export const SearchBar = ({
   searchPhrase,
   setSearchPhrase,
   setClicked,
+  lightBg,
+  darkBg,
+  lightColor,
+  darkColor,
 }: SearchBarProps) => {
+  const backgroundColor = useThemeColor(
+    { light: lightBg, dark: darkBg },
+    "inputBoxBackground",
+  );
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "textShaded",
+  );
   return (
     <View style={styles.container}>
       <View
-        style={
-          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
-        }
+        style={[
+          { backgroundColor },
+          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked,
+        ]}
       >
         {/* search Icon */}
         <Feather
           name="search"
           size={20}
-          color="black"
+          color={color}
           style={{ marginLeft: 1 }}
         />
         {/* Input field */}
@@ -55,7 +73,7 @@ export const SearchBar = ({
             color="black"
             style={{ padding: 1 }}
             onPress={() => {
-              setSearchPhrase('');
+              setSearchPhrase("");
             }}
           />
         )}
@@ -80,32 +98,30 @@ export const SearchBar = ({
 const styles = StyleSheet.create({
   container: {
     margin: 15,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'row',
-    width: '90%',
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "row",
+    width: "90%",
   },
   searchBar__unclicked: {
     padding: 10,
-    flexDirection: 'row',
-    width: '95%',
-    backgroundColor: '#d9dbda',
+    flexDirection: "row",
+    width: "95%",
     borderRadius: 15,
-    alignItems: 'center',
+    alignItems: "center",
   },
   searchBar__clicked: {
     padding: 10,
-    flexDirection: 'row',
-    width: '80%',
-    backgroundColor: '#d9dbda',
+    flexDirection: "row",
+    width: "80%",
     borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
   input: {
     fontSize: 20,
     marginLeft: 10,
-    width: '90%',
+    width: "90%",
   },
 });
 
