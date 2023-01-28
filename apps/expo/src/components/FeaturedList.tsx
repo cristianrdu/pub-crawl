@@ -30,7 +30,7 @@ export function FeaturedList() {
     { title: "Third post", rating: "4.3" },
   ];
   return (
-    <ScrollView className="p-4" keyboardDismissMode="on-drag">
+    <View className="bg-transparent p-4">
       <MonoText
         className="mb-3 text-xl"
         lightColor={Colors.light.text}
@@ -39,7 +39,7 @@ export function FeaturedList() {
       >
         Featured
       </MonoText>
-      <View className="h-full w-full">
+      <View className="h-fitw-full">
         <FlashList
           data={cards}
           estimatedItemSize={20}
@@ -55,17 +55,6 @@ export function FeaturedList() {
           )}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

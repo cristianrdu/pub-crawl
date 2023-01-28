@@ -1,12 +1,8 @@
 import { StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import EditScreenInfo from "./EditScreenInfo";
-import { Text, View, ScrollView } from "./Themed";
-import { RootTabScreenProps } from "../../types";
-import { MonoText } from "./StyledText";
+import { Text, View } from "./Themed";
 import Colors from "../constants/Colors";
-import { Feather } from "@expo/vector-icons";
 
 const imageSrc = require("../../assets/images/pub-crawl.jpeg");
 
@@ -26,6 +22,8 @@ export const Card: React.FC<{
       <View className="flex h-full justify-between rounded-lg bg-black/40 px-5 pt-4">
         <View className="flex flex-row justify-between bg-transparent">
           <Text
+            lightColor={Colors.light.text}
+            darkColor={Colors.dark.text}
             className={`text-xl font-semibold text-white ${
               !title ? "italic" : ""
             }`}

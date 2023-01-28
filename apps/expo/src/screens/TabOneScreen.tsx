@@ -4,6 +4,7 @@ import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View, ScrollView } from "../components/Themed";
 import { RootTabScreenProps } from "../../types";
 import { FeaturedList } from "../components/FeaturedList";
+import { CommunityList } from "../components/CommunityList";
 
 export default function TabOneScreen({
   navigation,
@@ -11,6 +12,7 @@ export default function TabOneScreen({
   return (
     <ScrollView keyboardDismissMode="on-drag">
       <FeaturedList />
+      <CommunityList />
     </ScrollView>
   );
 }
