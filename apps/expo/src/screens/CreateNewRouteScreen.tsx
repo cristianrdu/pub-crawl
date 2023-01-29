@@ -1,63 +1,46 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { Platform, Image, Button } from "react-native";
+import { useEffect, useState } from "react";
+import { Platform, Image, Button, TouchableOpacity } from "react-native";
 import { Input } from "../components/Input";
-import { launchImageLibrary } from "react-native-image-picker";
+import * as ImagePicker from "expo-image-picker";
 
 import { Text, View } from "../components/Themed";
 import Colors from "../constants/Colors";
 
-const SERVER_URL = "http://localhost:3000";
-
-const createFormData = (photo: any, body = {}) => {
-  const data = new FormData();
-
-  data.append("photo", {
-    name: photo.fileName,
-    type: photo.type,
-    uri: Platform.OS === "ios" ? photo.uri.replace("file://", "") : photo.uri,
-  });
-
-  Object.keys(body).forEach((key) => {
-    data.append(key, body[key]);
-  });
-
-  return data;
-};
-
 export function CreateNewRouteScreen() {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [photo, setPhoto] = useState(null);
-  const handleChoosePhoto = () => {
-    launchImageLibrary({ noData: true }, (response) => {
-      // console.log(response);
-      if (response) {
-        setPhoto(response);
-      }
+  const [image, setImage] = useState(null);
+  const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
+  // console.warn(status);
+
+  // useEffect(() => {
+  //   requestPermission();
+  // }, []);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
   };
 
-  const handleUploadPhoto = () => {
-    fetch(`${"SERVER_URL"}/api/upload`, {
-      method: "POST",
-      body: createFormData(photo, { userId: "123" }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("response", response);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
   return (
     <View
       darkColor={Colors.dark.background}
       lightColor={Colors.light.background}
-      className="flex h-full flex-row items-start justify-center"
+      className="flex h-full flex-col items-center justify-start"
     >
-      <View className="mt-8">
+      <View className="mt-20 mb-4">
         <Input
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
@@ -70,17 +53,22 @@ export function CreateNewRouteScreen() {
           placeholder={"Route Name"}
         />
       </View>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        {photo && (
-          <>
-            <Image
-              source={{ uri: photo.uri }}
-              style={{ width: 300, height: 300 }}
-            />
-            <Button title="Upload Photo" onPress={handleUploadPhoto} />
-          </>
+      <View className="flex w-full items-center justify-center">
+        {image ? (
+          <Image source={{ uri: image }} className="h-64 w-64" />
+        ) : (
+          <View
+            darkColor={Colors.light.background}
+            lightColor={Colors.dark.background}
+            className="h-64 w-64"
+          />
         )}
-        <Button title="Choose Photo" onPress={handleChoosePhoto} />
+        <TouchableOpacity
+          className="mt-6 w-[250px] items-center justify-center rounded-full bg-yellow-400 py-4"
+          onPress={pickImage}
+        >
+          <Text className="font-semibold">Pick an image from camera roll</Text>
+        </TouchableOpacity>
       </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
