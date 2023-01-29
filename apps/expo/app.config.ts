@@ -7,6 +7,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
+  scheme: "myapp",
   splash: {
     image: "./assets/icon.png",
     resizeMode: "contain",
@@ -31,7 +32,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
       projectId: "your-project-id",
     },
   },
-  plugins: ["./expo-plugins/with-modify-gradle.js"]
+  plugins: ["./expo-plugins/with-modify-gradle.js", "expo-image-picker"],
 });
 
 export default defineConfig;

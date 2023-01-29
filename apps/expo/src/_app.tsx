@@ -4,14 +4,25 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { TRPCProvider } from "./utils/api";
 
 import { HomeScreen } from "./screens/home";
+import Navigation from "./navigation";
+import useColorScheme from "./hooks/useColorScheme";
+import useCachedResources from "./hooks/useCachedResources";
 
 export const App = () => {
-  return (
-    <TRPCProvider>
-      <SafeAreaProvider>
-        <HomeScreen />
-        <StatusBar />
-      </SafeAreaProvider>
-    </TRPCProvider>
-  );
+  const isLoadingComplete = useCachedResources();
+  const colorScheme = useColorScheme();
+
+  if (!isLoadingComplete) {
+    return null;
+  } else {
+    return (
+      <TRPCProvider>
+        <SafeAreaProvider>
+          <Navigation colorScheme={colorScheme} />
+          {/* <HomeScreen /> */}
+          <StatusBar />
+        </SafeAreaProvider>
+      </TRPCProvider>
+    );
+  }
 };
