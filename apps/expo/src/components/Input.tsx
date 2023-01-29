@@ -1,4 +1,3 @@
-// SearchBar.js
 import React from "react";
 import {
   StyleSheet,
@@ -7,11 +6,12 @@ import {
   Keyboard,
   Button,
   TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { useThemeColor } from "./Themed";
 
-type SearchBarProps = {
+type InputProps = {
   clicked: any;
   searchPhrase: any;
   setSearchPhrase: any;
@@ -20,9 +20,11 @@ type SearchBarProps = {
   darkBg: any;
   lightColor: any;
   darkColor: any;
+  placeholder?: string;
+  showSearchIcon?: boolean;
 };
 
-export const SearchBar = ({
+export const Input = ({
   clicked,
   searchPhrase,
   setSearchPhrase,
@@ -31,7 +33,9 @@ export const SearchBar = ({
   darkBg,
   lightColor,
   darkColor,
-}: SearchBarProps) => {
+  showSearchIcon,
+  placeholder,
+}: InputProps) => {
   const backgroundColor = useThemeColor(
     { light: lightBg, dark: darkBg },
     "inputBoxBackground",
@@ -49,16 +53,18 @@ export const SearchBar = ({
         ]}
       >
         {/* search Icon */}
-        <Feather
-          name="search"
-          size={20}
-          color={color}
-          style={{ marginLeft: 1 }}
-        />
+        {showSearchIcon && (
+          <Feather
+            name="search"
+            size={20}
+            color={color}
+            style={{ marginLeft: 1 }}
+          />
+        )}
         {/* Input field */}
         <TextInput
           style={styles.input}
-          placeholder="Search"
+          placeholder={placeholder}
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
@@ -79,7 +85,7 @@ export const SearchBar = ({
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
-      {clicked && (
+      {Platform.OS === "ios" && clicked && (
         <View>
           <Button
             title="Cancel"

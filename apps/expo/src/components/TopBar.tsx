@@ -1,10 +1,10 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { Pressable } from "react-native";
+import { Platform, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import { MonoText } from "./StyledText";
 import { View, SafeAreaView } from "./Themed";
-import { SearchBar } from "./SearchBar";
+import { Input } from "./Input";
 import { Avatar } from "./Avatar";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
@@ -26,6 +26,7 @@ export const TopBar = ({
 
   return (
     <SafeAreaView
+      className={`${Platform.OS === "ios" ? "" : "mt-5"}`}
       darkColor={Colors.dark.backgroundSecondary}
       lightColor={Colors.light.backgroundSecondary}
     >
@@ -49,7 +50,7 @@ export const TopBar = ({
           </MonoText>
           <Pressable
             className="mb-1 ml-1.5"
-            onPress={() => navigation.navigate("Modal")}
+            onPress={() => navigation.navigate("CreateNewRoute")}
             style={({ pressed }) => ({
               opacity: pressed ? 0.5 : 1,
             })}
@@ -64,7 +65,7 @@ export const TopBar = ({
           <Avatar />
         </View>
       </View>
-      <SearchBar
+      <Input
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
         clicked={clicked}
@@ -73,6 +74,8 @@ export const TopBar = ({
         darkBg={Colors.dark.inputBoxBackground}
         lightColor={Colors.light.textShaded}
         darkColor={Colors.dark.textShaded}
+        showSearchIcon
+        placeholder="Search"
       />
     </SafeAreaView>
   );

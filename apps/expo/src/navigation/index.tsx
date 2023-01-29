@@ -17,7 +17,7 @@ import { TopBar } from "../components/TopBar";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
+import { CreateNewRouteScreen } from "../screens/CreateNewRouteScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
@@ -63,7 +63,11 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="CreateNewRoute"
+          options={{ headerTitle: "Create New Route" }}
+          component={CreateNewRouteScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
