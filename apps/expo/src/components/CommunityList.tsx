@@ -1,11 +1,6 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "./EditScreenInfo";
-import { Text, View, ScrollView } from "./Themed";
-import { RootTabScreenProps } from "../../types";
+import { View } from "./Themed";
 import { MonoText } from "./StyledText";
 import Colors from "../constants/Colors";
-import { Card } from "./Card";
 import { FlashList } from "@shopify/flash-list";
 import { Post } from "./Post";
 

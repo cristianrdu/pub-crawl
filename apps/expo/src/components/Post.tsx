@@ -1,12 +1,9 @@
-import { StyleSheet, TouchableOpacity, Image } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import { Image } from "react-native";
 import { Text, View } from "./Themed";
 import { Card } from "./Card";
 import Colors from "../constants/Colors";
 import { Avatar } from "./Avatar";
 
-const imageSrc = require("../../assets/images/pub-crawl.jpeg");
 const imageSrc2 = require("../../assets/images/crawl.jpeg");
 
 export const Post: React.FC<{

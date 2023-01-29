@@ -1,9 +1,6 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "../components/EditScreenInfo";
-import { Text, View, ScrollView } from "../components/Themed";
+import { ScrollView, View } from "../components/Themed";
 import { RootTabScreenProps } from "../../types";
-import { FeaturedList } from "../components/FeaturedList";
+import { RoutesList } from "../components/RoutesList";
 import { CommunityList } from "../components/CommunityList";
 
 export default function TabOneScreen({
@@ -11,26 +8,13 @@ export default function TabOneScreen({
 }: RootTabScreenProps<"TabOne">) {
   return (
     <ScrollView keyboardDismissMode="on-drag">
-      <FeaturedList />
+      <RoutesList
+        listHeight="h-fit"
+        cardWidth="w-56"
+        direction="horizontal"
+        title="Featured"
+      />
       <CommunityList />
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

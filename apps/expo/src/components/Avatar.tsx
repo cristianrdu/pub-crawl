@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import Colors from "../constants/Colors";
-import { View, SafeAreaView } from "./Themed";
+import { View } from "./Themed";
 
 const imageSrc = require("../../assets/images/steve.jpeg");
 

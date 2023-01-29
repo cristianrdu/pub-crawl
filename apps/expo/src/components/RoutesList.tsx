@@ -1,14 +1,22 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "./EditScreenInfo";
-import { Text, View, ScrollView } from "./Themed";
-import { RootTabScreenProps } from "../../types";
+import { View } from "./Themed";
 import { MonoText } from "./StyledText";
 import Colors from "../constants/Colors";
 import { Card } from "./Card";
 import { FlashList } from "@shopify/flash-list";
 
-export function FeaturedList() {
+export function RoutesList({
+  cardWidth = "",
+  direction,
+  title,
+  itemSeparator = <View className="h-2" />,
+  listHeight = "h-full",
+}: {
+  cardWidth?: string;
+  direction: string;
+  title: string;
+  itemSeparator?: JSX.Element;
+  listHeight?: string;
+}) {
   const cards = [
     { title: "FIrst post", rating: "4.3" },
     { title: "Second post", rating: "4.3" },
@@ -37,16 +45,17 @@ export function FeaturedList() {
         darkColor={Colors.dark.text}
         fontFamiliy={"space-mono-bold"}
       >
-        Featured
+        {title}
       </MonoText>
-      <View className="h-fitw-full">
+      <View className={`w-full ${listHeight}`}>
         <FlashList
           data={cards}
-          estimatedItemSize={20}
-          horizontal
-          ItemSeparatorComponent={() => <View className="h-2" />}
+          estimatedItemSize={30}
+          horizontal={direction === "horizontal" ? true : false}
+          ItemSeparatorComponent={() => itemSeparator}
           renderItem={(p) => (
             <Card
+              cardWidth={cardWidth}
               title={p.item.title}
               rating={p.item.rating}
               key={p.item.title}

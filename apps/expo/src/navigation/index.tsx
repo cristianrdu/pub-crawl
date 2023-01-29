@@ -92,30 +92,16 @@ function BottomTabNavigator() {
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          header: () => <TopBar />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          header: () => <TopBar title="Routes" navigation={navigation} />,
         })}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
-        options={{
+        options={({ navigation }: RootTabScreenProps<"TabTwo">) => ({
           tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,
-        }}
+          header: () => <TopBar title="Saved" navigation={navigation} />,
+        })}
       />
       <BottomTab.Screen
         name="TabThree"
