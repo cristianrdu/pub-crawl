@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { useThemeColor } from "./Themed";
+import { useState } from "react";
 
 type InputProps = {
   clicked: any;
@@ -44,6 +45,19 @@ export const Input = ({
     { light: lightColor, dark: darkColor },
     "textShaded",
   );
+
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setClicked(false);
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   return (
     <View style={styles.container}>
       <View
@@ -85,8 +99,8 @@ export const Input = ({
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
-      {Platform.OS === "ios" && clicked && (
-        <View>
+      {clicked && (
+        <View className={Platform.OS === "ios" ? "" : "ml-2"}>
           <Button
             title="Cancel"
             onPress={() => {
