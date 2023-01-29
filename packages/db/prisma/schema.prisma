@@ -14,10 +14,10 @@ model Post {
   id      String  @id @default(cuid())
   title   String
   content String
-  userId  String
-  routeId String
+  userId  String?
+  routeId String?
   image   String?
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   route   Route[]
 }
 
