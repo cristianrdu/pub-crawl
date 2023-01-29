@@ -27,18 +27,20 @@ export const routeRouter = createTRPCRouter({
   }),
   update: publicProcedure
     .input(
-      z.object({
-        id: z.string(),
-        title: z.optional(z.string()),
-        content: z.optional(z.string()),
-        category: z.optional(z.string()),
-        image: z.optional(z.string().nullable()),
-        postId: z.optional(z.string().nullable()),
-        userId: z.optional(z.string().nullable()),
-      }),
+      z
+        .object({
+          id: z.string(),
+          title: z.string(),
+          content: z.string(),
+          category: z.string(),
+          image: z.string(),
+          postId: z.string(),
+          userId: z.string(),
+        })
+        .partial(),
     )
     .mutation(({ ctx, input }) => {
-      const {id, ...rest } = input;
+      const { id, ...rest } = input;
 
       return ctx.prisma.route.update({
         where: { id },
