@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { TRPCProvider } from "./utils/api";
 
-import { HomeScreen } from "./screens/home";
+// import { HomeScreen } from "./screens/home";
 import Navigation from "./navigation";
 import useColorScheme from "./hooks/useColorScheme";
 import useCachedResources from "./hooks/useCachedResources";

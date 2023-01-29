@@ -15,29 +15,29 @@ model Post {
   title   String
   content String
   userId  String?
-  routeId String?
   image   String?
   user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  route   Route[]
+  routes  Route[]
 }
 
 model Route {
-  id       String     @id @default(cuid())
-  title    String
-  content  String
-  category String
-  userId   String?
-  image    String?
-  postId   String?    @unique
-  user     User?      @relation(fields: [userId], references: [id])
-  post     Post?      @relation(fields: [postId], references: [id])
-  Location Location[]
+  id        String     @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  createdAt DateTime   @default(now())
+  userId    String?
+  image     String?
+  postId    String?    @unique
+  user      User?      @relation(fields: [userId], references: [id])
+  post      Post?      @relation(fields: [postId], references: [id])
+  locations Location[]
 }
 
 model Location {
   id      String  @id @default(cuid())
   title   String
-  image   String
+  image   String?
   routeId String?
   route   Route?  @relation(fields: [routeId], references: [id])
 }
