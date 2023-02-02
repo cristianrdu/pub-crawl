@@ -13,7 +13,9 @@ export const locationRouter = createTRPCRouter({
       z.object({
         title: z.string(),
         image: z.string(),
-        routeId: z.optional(z.string())
+        latitude: z.string(),
+        longitude: z.string(),
+        routeId: z.optional(z.string()),
       }),
     )
     .mutation(({ ctx, input }) => {
