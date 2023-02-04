@@ -27,6 +27,9 @@ import {
   RootTabScreenProps,
 } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import { MapScreen } from "../screens/MapScreen";
+import TabThreeScreen from "../screens/TabThreeScreen";
+import TabFourScreen from "../screens/TabFourScreen";
 
 export default function Navigation({
   colorScheme,
@@ -61,6 +64,11 @@ function RootNavigator() {
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
+      />
+      <Stack.Screen
+        name="MapView"
+        component={MapScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen
@@ -109,7 +117,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={TabTwoScreen}
+        component={TabThreeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
@@ -118,7 +126,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={TabTwoScreen}
+        component={TabFourScreen}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="wechat" color={color} />,
         }}

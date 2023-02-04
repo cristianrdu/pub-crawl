@@ -13,6 +13,7 @@ export default function TabOneScreen({
         cardWidth="w-56"
         direction="horizontal"
         title="Featured"
+        navigation={navigation}
       />
       <CommunityList />
     </ScrollView>

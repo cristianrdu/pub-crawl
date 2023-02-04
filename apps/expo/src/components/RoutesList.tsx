@@ -3,6 +3,14 @@ import { MonoText } from "./StyledText";
 import Colors from "../constants/Colors";
 import { Card } from "./Card";
 import { FlashList } from "@shopify/flash-list";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../types";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export function RoutesList({
   cardWidth = "",
@@ -10,12 +18,17 @@ export function RoutesList({
   title,
   itemSeparator = <View className="h-2" />,
   listHeight = "h-full",
+  navigation,
 }: {
   cardWidth?: string;
   direction: string;
   title: string;
   itemSeparator?: JSX.Element;
   listHeight?: string;
+  navigation: CompositeNavigationProp<
+    BottomTabNavigationProp<RootTabParamList>,
+    NativeStackNavigationProp<RootStackParamList, "Root", undefined>
+  >;
 }) {
   const cards = [
     { title: "FIrst post", rating: "4.3" },
@@ -59,7 +72,7 @@ export function RoutesList({
               title={p.item.title}
               rating={p.item.rating}
               key={p.item.title}
-              onPress={() => console.warn("PRESSSS")}
+              onPress={() => navigation.navigate("MapView")}
             />
           )}
         />

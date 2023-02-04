@@ -17,7 +17,7 @@ export const TopBar = ({
 }: {
   title: string;
   navigation: CompositeNavigationProp<
-    BottomTabNavigationProp<RootTabParamList, "TabTwo", undefined>,
+    BottomTabNavigationProp<RootTabParamList>,
     NativeStackNavigationProp<RootStackParamList, "Root", undefined>
   >;
 }) => {

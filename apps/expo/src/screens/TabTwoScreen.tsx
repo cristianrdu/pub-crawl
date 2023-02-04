@@ -12,6 +12,7 @@ export default function TabTwoScreen({
         title=""
         cardWidth="w-full"
         itemSeparator={<View className="h-4" />}
+        navigation={navigation}
       />
     </ScrollView>
   );
