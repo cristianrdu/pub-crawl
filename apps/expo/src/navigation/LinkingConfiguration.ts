@@ -13,6 +13,8 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
+      SignUp: "SignUp",
+      SignIn: "SignIn",
       Root: {
         screens: {
           TabOne: {
@@ -27,12 +29,12 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
           TabThree: {
             screens: {
-              TabThreeScreen: "Three",
+              TabThreeScreen: "three",
             },
           },
           TabFour: {
             screens: {
-              TabFourScreen: "Four",
+              TabFourScreen: "four",
             },
           },
         },
