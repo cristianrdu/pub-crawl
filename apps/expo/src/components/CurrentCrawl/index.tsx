@@ -52,7 +52,7 @@ export const CurrentCrawl = ({
       {drawerState === DrawerState.Open && (
         <Animated.View
           entering={prevDrawerState > drawerState ? undefined : FadeInDown}
-          exiting={prevDrawerState > drawerState ? undefined : FadeOutDown}
+          exiting={prevDrawerState > drawerState ? FadeOutDown : undefined}
         >
           <CrawlList />
         </Animated.View>

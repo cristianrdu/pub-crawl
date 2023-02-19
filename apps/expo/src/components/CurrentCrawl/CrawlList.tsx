@@ -13,7 +13,6 @@ import { Card } from "./Card";
 export const CrawlList = (props: any) => {
   const posts = [1, 2, 3, 4, 5, 6];
   const panelHeight = DrawerState.Open - DrawerState.Peek - 34;
-  console.warn(panelHeight);
   return (
     <View
       className="mt-5 h-fit px-5"
