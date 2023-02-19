@@ -1,6 +1,5 @@
 import { StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Text, View } from "./Themed";
 import Colors from "../constants/Colors";
 
@@ -39,7 +38,7 @@ export const Card: React.FC<{
           <View className="flex flex-row items-center bg-transparent">
             <Text className="mb-1 mr-1 font-bold uppercase text-white">12</Text>
             <View className="mb-1 rounded-full bg-white p-0.5">
-              <Entypo name="location-pin" size={20} color="black" />
+              <Ionicons name="location-sharp" size={20} color="black" />
             </View>
           </View>
           <View className="mt-1 bg-transparent">

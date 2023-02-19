@@ -13,6 +13,8 @@ import { PlaceSearch } from "./PlaceSearch";
 import { GOOGLE_API_KEY } from "../../../env.json";
 import MapViewDirections from "react-native-maps-directions";
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete";
+import { BottomDrawer, DrawerState } from "../BottomDrawerSwipeUp";
+import { CurrentCrawl } from "../CurrentCrawl";
 
 const { width, height } = Dimensions.get("window");
 
@@ -147,6 +149,9 @@ export const MapContainer = () => {
           </View>
         ) : null}
       </View>
+      <BottomDrawer>
+        <CurrentCrawl drawerState={DrawerState.Closed} />
+      </BottomDrawer>
     </View>
   );
 };
