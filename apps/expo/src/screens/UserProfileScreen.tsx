@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { SafeAreaView, Text } from "../components/Themed";
 import { TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
@@ -16,15 +17,17 @@ export default function UserProfileScreen() {
     try {
       await signOut();
     } catch (err: any) {
-      log("Error:> " + err?.status || "");
-      log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
+      log(`Error:> ${err?.status}` || "");
+      log(`Error:> ${err?.errors ? JSON.stringify(err.errors) : err}`);
     }
   };
 
   useEffect(() => {
-    const scheduler = setInterval(async () => {
-      const token = await getToken();
-      setSessionToken(token as string);
+    const scheduler = setInterval(() => {
+      void (async () => {
+        const token = await getToken();
+        setSessionToken(token as string);
+      })();
     }, 1000);
 
     return () => clearInterval(scheduler);
