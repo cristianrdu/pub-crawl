@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
 import { log } from "../../logger";
-import { RootStackScreenProps } from "../../types";
+import { RootStackScreenProps } from "../types/types";
 import { SignInWithOauth } from "../components/SignInWithOauth";
 
 export default function SignInScreen({
@@ -69,7 +69,7 @@ export default function SignInScreen({
       </TouchableOpacity>
 
       <View className="fle-[1] mt-5 items-center justify-start bg-white text-black">
-        <Text>Have an account?</Text>
+        <Text>Don't have an account?</Text>
 
         <TouchableOpacity
           className="mt-4 items-center justify-center rounded-md border border-black bg-white p-3"

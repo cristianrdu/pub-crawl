@@ -7,7 +7,7 @@
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../types/types";
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
@@ -41,6 +41,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       },
       CreateNewRoute: "CreateNewRoute",
       NotFound: "*",
+      UserProfile: "UserProfile",
     },
   },
 };

@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
-import { RootStackScreenProps } from "../../types";
+import { RootStackScreenProps } from "../types/types";
+import { log } from "../../logger";
 
 export default function VerifyCodeScreen({
   navigation,
@@ -22,8 +23,8 @@ export default function VerifyCodeScreen({
 
       await setSession(completeSignUp.createdSessionId);
     } catch (err: any) {
-      console.log("Error:> " + err?.status || "");
-      console.log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
+      log("Error:> " + err?.status || "");
+      log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
     }
   };
 

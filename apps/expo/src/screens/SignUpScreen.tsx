@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { log } from "../../logger";
-import { RootStackScreenProps } from "../../types";
+import { RootStackScreenProps } from "../types/types";
 import { SignUpWithOauth } from "../components/SignUpWithOauth";
 
 export default function SignUpScreen({

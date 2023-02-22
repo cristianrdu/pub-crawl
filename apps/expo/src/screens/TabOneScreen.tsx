@@ -1,5 +1,5 @@
 import { ScrollView, View } from "../components/Themed";
-import { RootTabScreenProps } from "../../types";
+import { RootTabScreenProps } from "../types/types";
 import { RoutesList } from "../components/RoutesList";
 import { CommunityList } from "../components/CommunityList";
 import { useEffect } from "react";

@@ -27,10 +27,11 @@ import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
-} from "../../types";
+} from "../types/types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { ClerkLoaded, useAuth, useUser } from "@clerk/clerk-expo";
 import VerifyCodeScreen from "../screens/VerifyCodeScreen";
+import UserProfileScreen from "../screens/UserProfileScreen";
 
 export default function Navigation({
   colorScheme,
@@ -81,6 +82,11 @@ function RootNavigator() {
                 component={CreateNewRouteScreen}
               />
             </Stack.Group>
+            <Stack.Screen
+              name="UserProfile"
+              options={{ headerShown: false }}
+              component={UserProfileScreen}
+            />
           </>
         ) : (
           <>

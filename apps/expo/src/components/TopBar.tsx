@@ -9,7 +9,7 @@ import { Avatar } from "./Avatar";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootTabParamList, RootStackParamList } from "../../types";
+import { RootTabParamList, RootStackParamList } from "../types/types";
 
 export const TopBar = ({
   title,
