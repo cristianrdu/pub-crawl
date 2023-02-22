@@ -6,10 +6,10 @@
 import {
   Text as DefaultText,
   View as DefaultView,
-  SafeAreaView as DefaultSafeAreaView,
   ScrollView as DefaultScrollView,
 } from "react-native";
 
+import { SafeAreaView as DefaultSafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 
@@ -34,7 +34,8 @@ type ThemeProps = {
 
 export type TextProps = ThemeProps & DefaultText["props"];
 export type ViewProps = ThemeProps & DefaultView["props"];
-export type SafeAreaViewProps = ThemeProps & DefaultSafeAreaView["props"];
+// TODO: props don't work in context like this
+// export type SafeAreaViewProps = ThemeProps & DefaultSafeAreaView["props"];
 export type ScrollViewProps = ThemeProps & DefaultScrollView["props"];
 
 export function Text(props: TextProps) {
@@ -54,7 +55,8 @@ export function View(props: ViewProps) {
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
-export function SafeAreaView(props: SafeAreaViewProps) {
+export function SafeAreaView(props: any) {
+  console.log("tester", props);
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
