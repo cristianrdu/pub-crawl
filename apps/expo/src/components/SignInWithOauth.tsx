@@ -3,7 +3,6 @@ import { useSignIn } from "@clerk/clerk-expo";
 import * as AuthSession from "expo-auth-session";
 import { Text, TouchableOpacity } from "react-native";
 import { log } from "../../logger";
-import { styles } from "./Styles";
 
 export function SignInWithOauth() {
   const { signIn, setSession, isLoaded } = useSignIn();
@@ -69,10 +68,10 @@ export function SignInWithOauth() {
 
   return (
     <TouchableOpacity
-      style={{ ...styles.secondaryButton, marginBottom: 20 }}
+      className="mt-4 mb-5 items-center justify-center rounded-md border border-black bg-white p-3"
       onPress={onPress}
     >
-      <Text style={styles.secondaryButtonText}>Sign in with Google</Text>
+      <Text className="font-bold text-black">Sign in with Google</Text>
     </TouchableOpacity>
   );
 }

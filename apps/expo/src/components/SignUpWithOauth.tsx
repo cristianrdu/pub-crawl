@@ -2,7 +2,6 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { log } from "../../logger";
-import { styles } from "./Styles";
 import * as AuthSession from "expo-auth-session";
 
 export function SignUpWithOauth() {
@@ -72,10 +71,10 @@ export function SignUpWithOauth() {
 
   return (
     <TouchableOpacity
-      style={{ ...styles.secondaryButton, marginBottom: 20 }}
+      className="mt-4 mb-5 items-center justify-center rounded-md border border-black bg-white p-3"
       onPress={onPress}
     >
-      <Text style={styles.secondaryButtonText}>Sign up with Google</Text>
+      <Text className="font-bold text-black">Sign up with Google</Text>
     </TouchableOpacity>
   );
 }

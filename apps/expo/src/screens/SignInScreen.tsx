@@ -4,7 +4,6 @@ import { useSignIn } from "@clerk/clerk-expo";
 import { log } from "../../logger";
 import { RootStackScreenProps } from "../../types";
 import { SignInWithOauth } from "../components/SignInWithOauth";
-import { styles } from "../components/Styles";
 
 export default function SignInScreen({
   navigation,
@@ -35,26 +34,26 @@ export default function SignInScreen({
   const onSignUpPress = () => navigation.replace("SignUp");
 
   return (
-    <View style={styles.container}>
-      <View style={styles.oauthView}>
+    <View className="flex-[1] items-center justify-start bg-[#fff] pt-5">
+      <View className="mb-5 w-11/12 border-b border-b-current">
         <SignInWithOauth />
       </View>
 
-      <View style={styles.inputView}>
+      <View className="mb-5 h-12 w-11/12 rounded-md border border-solid border-black">
         <TextInput
           autoCapitalize="none"
           value={emailAddress}
-          style={styles.textInput}
+          className="ml-3 h-14 flex-[1] p-3"
           placeholder="Email..."
           placeholderTextColor="#000"
           onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
         />
       </View>
 
-      <View style={styles.inputView}>
+      <View className="mb-5 h-12 w-11/12 rounded-md border border-solid border-black">
         <TextInput
           value={password}
-          style={styles.textInput}
+          className="ml-3 h-14 flex-[1] p-3"
           placeholder="Password..."
           placeholderTextColor="#000"
           secureTextEntry={true}
@@ -62,18 +61,21 @@ export default function SignInScreen({
         />
       </View>
 
-      <TouchableOpacity style={styles.primaryButton} onPress={onSignInPress}>
-        <Text style={styles.primaryButtonText}>Sign in</Text>
+      <TouchableOpacity
+        className="mt-12 h-14 w-11/12 items-center justify-center rounded-md bg-black text-white"
+        onPress={onSignInPress}
+      >
+        <Text className="font-bold text-white">Sign in</Text>
       </TouchableOpacity>
 
-      <View style={styles.footer}>
+      <View className="fle-[1] mt-5 items-center justify-start bg-white text-black">
         <Text>Have an account?</Text>
 
         <TouchableOpacity
-          style={styles.secondaryButton}
+          className="mt-4 items-center justify-center rounded-md border border-black bg-white p-3"
           onPress={onSignUpPress}
         >
-          <Text style={styles.secondaryButtonText}>Sign up</Text>
+          <Text className="font-bold text-black">Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
