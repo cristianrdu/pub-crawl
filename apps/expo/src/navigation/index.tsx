@@ -58,8 +58,6 @@ function RootNavigator() {
   const { signOut } = useAuth();
   const { isSignedIn, user } = useUser();
 
-  // signOut();
-  console.log("userino", user);
   return (
     <ClerkLoaded>
       <Stack.Navigator>

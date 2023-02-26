@@ -56,7 +56,6 @@ export function View(props: ViewProps) {
 }
 
 export function SafeAreaView(props: any) {
-  console.log("tester", props);
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },

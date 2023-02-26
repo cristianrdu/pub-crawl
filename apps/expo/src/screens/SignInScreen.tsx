@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
+import { View, Text } from "../components/Themed";
 import { useSignIn } from "@clerk/clerk-expo";
 import { log } from "../../logger";
 import { RootStackScreenProps } from "../types/types";
