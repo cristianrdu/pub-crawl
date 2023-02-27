@@ -80,7 +80,11 @@ function RootNavigator() {
                 component={CreateNewRouteScreen}
               />
             </Stack.Group>
-            <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+            <Stack.Screen
+              name="UserProfile"
+              options={{ headerTitle: "Your Profile" }}
+              component={UserProfileScreen}
+            />
           </>
         ) : (
           <>
