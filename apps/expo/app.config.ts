@@ -1,5 +1,8 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
+const CLERK_PUBLISHABLE_KEY =
+  "pk_test_YWNlLW1hbW1vdGgtNzYuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
 const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
   name: "expo",
   slug: "expo",
@@ -31,6 +34,7 @@ const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: "your-project-id",
     },
+    CLERK_PUBLISHABLE_KEY,
   },
   plugins: ["./expo-plugins/with-modify-gradle.js", "expo-image-picker"],
 });

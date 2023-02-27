@@ -9,7 +9,7 @@ import { Avatar } from "./Avatar";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootTabParamList, RootStackParamList } from "../../types";
+import { RootTabParamList, RootStackParamList } from "../types/types";
 
 export const TopBar = ({
   title,
@@ -26,7 +26,6 @@ export const TopBar = ({
 
   return (
     <SafeAreaView
-      className={`${Platform.OS === "ios" ? "" : "mt-5"}`}
       darkColor={Colors.dark.backgroundSecondary}
       lightColor={Colors.light.backgroundSecondary}
     >
@@ -59,10 +58,19 @@ export const TopBar = ({
           </Pressable>
         </View>
         <View
+          className="flex flex-row items-center"
           darkColor={Colors.dark.backgroundSecondary}
           lightColor={Colors.light.backgroundSecondary}
         >
-          <Avatar />
+          <Pressable
+            className="mb-1 ml-1.5"
+            onPress={() => navigation.navigate("UserProfile")}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+          >
+            <Avatar />
+          </Pressable>
         </View>
       </View>
       <Input

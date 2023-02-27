@@ -18,10 +18,12 @@
  */
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
-import { getServerSession, type Session } from "@acme/auth";
 import { prisma } from "@acme/db";
+import { getAuth, clerkClient } from "@clerk/nextjs/server";
+import type { User, Session } from "@clerk/nextjs/api";
 
 type CreateContextOptions = {
+  user: User | null;
   session: Session | null;
 };
 
@@ -36,6 +38,7 @@ type CreateContextOptions = {
  */
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
+    user: opts.user,
     session: opts.session,
     prisma,
   };
@@ -47,12 +50,19 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  * @link https://trpc.io/docs/context
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+  async function getUserAndSession() {
+    // get userId from request
+    const { userId, session } = getAuth(opts.req);
+    // get full user object
+    const user = userId ? await clerkClient.users.getUser(userId) : null;
 
-  // Get the session from the server using the unstable_getServerSession wrapper function
-  const session = await getServerSession({ req, res });
+    return { user, session: session || null };
+  }
+
+  const { user, session } = await getUserAndSession();
 
   return createInnerTRPCContext({
+    user,
     session,
   });
 };
@@ -100,13 +110,13 @@ export const publicProcedure = t.procedure;
  * procedure
  */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session?.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+  if (!ctx.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not authenticated" });
   }
   return next({
     ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
+      user: ctx.user,
+      session: ctx.user,
     },
   });
 });
