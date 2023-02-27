@@ -21,12 +21,17 @@ import { CreateNewRouteScreen } from "../screens/CreateNewRouteScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import SignInScreen from "../screens/SignInScreen";
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
-} from "../../types";
+} from "../types/types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import { ClerkLoaded, useAuth, useUser } from "@clerk/clerk-expo";
+import VerifyCodeScreen from "../screens/VerifyCodeScreen";
+import UserProfileScreen from "../screens/UserProfileScreen";
 
 export default function Navigation({
   colorScheme,
@@ -50,26 +55,58 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const { signOut } = useAuth();
+  const { isSignedIn, user } = useUser();
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen
-          name="CreateNewRoute"
-          options={{ headerTitle: "Create New Route" }}
-          component={CreateNewRouteScreen}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+    <ClerkLoaded>
+      <Stack.Navigator>
+        {isSignedIn ? (
+          <>
+            <Stack.Screen
+              name="Root"
+              component={BottomTabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="NotFound"
+              component={NotFoundScreen}
+              options={{ title: "Oops!" }}
+            />
+            <Stack.Group screenOptions={{ presentation: "modal" }}>
+              <Stack.Screen
+                name="CreateNewRoute"
+                options={{ headerTitle: "Create New Route" }}
+                component={CreateNewRouteScreen}
+              />
+            </Stack.Group>
+            <Stack.Screen
+              name="UserProfile"
+              options={{ headerTitle: "Your Profile" }}
+              component={UserProfileScreen}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{ title: "Sign Up" }}
+            />
+            <Stack.Screen
+              name="SignIn"
+              component={SignInScreen}
+              options={{ title: "Sign In" }}
+            />
+            <Stack.Screen
+              name="VerifyCode"
+              component={VerifyCodeScreen}
+              options={{ title: "Sign Up" }}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </ClerkLoaded>
   );
 }
 

@@ -7,12 +7,14 @@
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../types/types";
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
+      SignUp: "SignUp",
+      SignIn: "SignIn",
       Root: {
         screens: {
           TabOne: {
@@ -27,18 +29,19 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
           TabThree: {
             screens: {
-              TabThreeScreen: "Three",
+              TabThreeScreen: "three",
             },
           },
           TabFour: {
             screens: {
-              TabFourScreen: "Four",
+              TabFourScreen: "four",
             },
           },
         },
       },
       CreateNewRoute: "CreateNewRoute",
       NotFound: "*",
+      UserProfile: "UserProfile",
     },
   },
 };
